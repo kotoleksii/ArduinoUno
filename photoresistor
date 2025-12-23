@@ -1,0 +1,31 @@
+const int LED_COUNT = 8;
+const int LED_PINS[LED_COUNT] = {2, 3, 4, 5, 6, 7, 8, 9};
+const int LDR_PIN = A0;
+int sensorValue = 0;
+int ledLevel = 0;
+
+void setup()
+{
+  Serial.begin(9600);
+  
+  for(int led =0; led < LED_COUNT; led++) {
+  	pinMode(LED_PINS[led], OUTPUT);
+  }
+}
+
+void loop()
+{
+  sensorValue = analogRead(LDR_PIN);
+  Serial.println(sensorValue);
+  
+  ledLevel = map(sensorValue, 0, 310, 0, LED_COUNT);
+  ledLevel = constrain(ledLevel, 0, LED_COUNT);
+  
+  for(int led =0; led < LED_COUNT; led++) {
+    if(led < ledLevel) {
+		digitalWrite(LED_PINS[led], HIGH);
+    } else {
+    	digitalWrite(LED_PINS[led], LOW);
+    }
+  }
+}
