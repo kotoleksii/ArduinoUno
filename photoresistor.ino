@@ -8,7 +8,7 @@ void setup()
 {
   Serial.begin(9600);
   
-  for(int led =0; led < LED_COUNT; led++) {
+  for(int led=0; led < LED_COUNT; led++) {
   	pinMode(LED_PINS[led], OUTPUT);
   }
 }
@@ -21,7 +21,7 @@ void loop()
   ledLevel = map(sensorValue, 0, 310, 0, LED_COUNT);
   ledLevel = constrain(ledLevel, 0, LED_COUNT);
   
-  for(int led =0; led < LED_COUNT; led++) {
+  for(int led=0; led < LED_COUNT; led++) {
     if(led < ledLevel) {
 		digitalWrite(LED_PINS[led], HIGH);
     } else {
