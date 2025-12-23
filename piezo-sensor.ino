@@ -1,22 +1,36 @@
-const int BUZZER_PIN = 8;
+const int BUZZER_PIN = 10;
+const int LED_PIN = 8; 
+
+void beep(int freq, int toneMs, int totalMs) {
+  digitalWrite(LED_PIN, HIGH);
+  tone(BUZZER_PIN, freq, toneMs);
+  delay(toneMs);
+
+  noTone(BUZZER_PIN);
+  digitalWrite(LED_PIN, LOW);
+
+  int rest = totalMs - toneMs;
+  if (rest > 0) delay(rest);
+}
 
 void setup() {
   pinMode(BUZZER_PIN, OUTPUT);
+  pinMode(LED_PIN, OUTPUT);
 }
 
 void loop() {
   // S = ...
-  tone(BUZZER_PIN, 900, 120); delay(200); noTone(BUZZER_PIN);
-  tone(BUZZER_PIN, 900, 120); delay(200); noTone(BUZZER_PIN);
-  tone(BUZZER_PIN, 900, 120); delay(400); noTone(BUZZER_PIN);
+  beep(900, 120, 200);
+  beep(900, 120, 200);
+  beep(900, 120, 400);
 
   // O = ---
-  tone(BUZZER_PIN, 900, 360); delay(440); noTone(BUZZER_PIN);
-  tone(BUZZER_PIN, 900, 360); delay(440); noTone(BUZZER_PIN);
-  tone(BUZZER_PIN, 900, 360); delay(600); noTone(BUZZER_PIN);
+  beep(900, 360, 440);
+  beep(900, 360, 440);
+  beep(900, 360, 600);
 
   // S = ...
-  tone(BUZZER_PIN, 900, 120); delay(200); noTone(BUZZER_PIN);
-  tone(BUZZER_PIN, 900, 120); delay(200); noTone(BUZZER_PIN);
-  tone(BUZZER_PIN, 900, 120); delay(1000); noTone(BUZZER_PIN);
+  beep(900, 120, 200);
+  beep(900, 120, 200);
+  beep(900, 120, 1000);
 }
