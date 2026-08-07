@@ -1,6 +1,6 @@
 #include <IRremote.h>
 
-const int IR_RECEIVER_PIN = 4;
+const int IR_RECEIVER_PIN = 8;
 const int LED_PIN = 11;
 
 void setup()
